@@ -9,21 +9,24 @@ const IMAGES_PER_PAGE = 20;
 
 
 function App() {
-  console.log('key', import.meta.env.VITE_API_KEY);
   const searchInput = useRef(null);
 
-  useEffect(() => {
-    const getImages = async () => {
-      try {
-        const result  = await axios.get(`${API_URL}?query=${searchInput.current.value}&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`);
-        console.log('result', result.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const getImages = async () => {
+      
+  //   };
 
-    getImages();
-  }, []);
+  //   getImages();
+  // }, []);
+
+  const fetchImages = async () => {
+    try {
+      const result  = await axios.get(`${API_URL}?query=${searchInput.current.value}&page=1&per_page=${IMAGES_PER_PAGE}&client_id=${import.meta.env.VITE_API_KEY}`);
+      console.log('result', result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleSearch = (event) => {
       event.preventDefault();
@@ -31,7 +34,8 @@ function App() {
   }
 
   const handleSelection = (selection) => {
-    searchInput.current.value = selection
+    searchInput.current.value = selection;
+    fetchImages();
   }
 
   return (
