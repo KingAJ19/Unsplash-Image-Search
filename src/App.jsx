@@ -4,10 +4,10 @@ import { Form } from 'react-bootstrap'
 
 
 const API_URL = 'https://api.unsplash.com/search/photos';
-const API_KEY = '-CHxPUdU20SvjJocPcT6Q3XLRv5blB5LSLPTY1uMYrU'
+// const API_KEY = '-CHxPUdU20SvjJocPcT6Q3XLRv5blB5LSLPTY1uMYrU'
 
 function App() {
-
+  console.log('key', import.meta.env.VITE_API_KEY);
   const searchInput = useRef(null);
 
   const handleSearch = (event) => {
